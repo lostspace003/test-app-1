@@ -11,6 +11,6 @@ jobs:
     steps:
     - name: info
       run: |
-        echo "this is a push event on a particular branch only
+        echo "this is a push event on a particular branch only"
     
       
