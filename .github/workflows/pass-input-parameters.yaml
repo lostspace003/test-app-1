@@ -1,0 +1,26 @@
+name: Manual Workflow
+
+on: 
+  workflow_dispatch:
+    inputs:
+      param1:
+        description: "This is the name of the trainer who is taking GH-200"
+        required: true
+        default: "Jalal Khan"
+jobs:
+  run-manual-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Manual Tasks
+        run: |
+          echo "Running manual tasks with the trainer name: ${{ github.event.inputs.param1 }}
+
+
+
+
+
+  
+  
