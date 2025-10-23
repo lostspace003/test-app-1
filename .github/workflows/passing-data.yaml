@@ -15,6 +15,7 @@ jobs:
         path: data.txt
 
   data_download_job:
+    needs: data_generation_job
     runs-on: ubuntu-latest
     steps: 
     - name: Download Data Artifacts
