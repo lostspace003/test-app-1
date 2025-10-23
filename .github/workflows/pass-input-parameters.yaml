@@ -16,7 +16,7 @@ jobs:
 
       - name: Run Manual Tasks
         run: |
-          echo "Running manual tasks with the trainer name: ${{ github.event.inputs.param1 }}
+          echo "Running manual tasks with the trainer name: ${{ github.event.inputs.param1 }}"
 
 
 
