@@ -1,0 +1,13 @@
+name: Manual Events
+on:
+  workflow_dispatch:
+jobs:
+  run-manual-tasks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: info
+      run: |
+        echo "The Checkout of the repository has been completed successfully"
