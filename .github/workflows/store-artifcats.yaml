@@ -6,35 +6,41 @@ jobs:
   data_generation_job:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Needed to push changes to the repo
+      contents: write  # Required to push changes to the repo
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Generate Data
-      run: echo "Some Random Data is Generated" > data.txt
+      - name: Generate Data
+        run: echo "Some Random Data is Generated" > data.txt
 
-    - name: Move data to artifacts_store
-      run: |
-        mkdir -p artifacts_store
-        mv data.txt artifacts_store/data.txt
+      - name: Move data to artifacts_store
+        run: |
+          mkdir -p artifacts_store
+          mv data.txt artifacts_store/data.txt
 
-    - name: Commit and push artifact to repo
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-        git add artifacts_store/data.txt
-        git commit -m "Add generated data to artifacts_store"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push artifact to repo
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add artifacts_store/data.txt
+          git commit -m "Add generated data to artifacts_store"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   data_download_job:
     needs: data_generation_job
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Use Data from artifacts_store
-      run: cat artifacts_store/data.txt
+      - name: Use Data from artifacts_store
+        run: |
+          if [ -f artifacts_store/data.txt ]; then
+            cat artifacts_store/data.txt
+          else
+            echo "data.txt not found in artifacts_store"
+            exit 1
+          fi
