@@ -4,5 +4,6 @@ const { sum } = require('../src/sum');
 (function run() {
   assert.strictEqual(sum(1, 2), 3, '1 + 2 should equal 3');
   assert.throws(() => sum('1', 2), /expects two numbers/);
+  assert.strictEqual(sum(-5, 5), 0, '-5 + 5 should equal 0');
   console.log('All tests passed ✅');
 })();
