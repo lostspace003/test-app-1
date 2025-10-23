@@ -1,0 +1,62 @@
+name: node.js CI
+
+on: [push]
+
+jobs: #<----starts the job encapsulation
+  build: #<----start the 'build' encapsulation
+    runs-on: ubuntu-latest
+    steps: #<----start of steps encapsulation within 'build' job
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: NPM Install
+        run: npm install
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: build
+        run: npm run build
+        #<-----end of steps encapsulation within 'build' job
+        #<----end of 'build' job encapsulation
+        
+  test: #<----start the 'test' encapsulation
+    needs: build
+    runs-on: ubuntu-latest
+    steps: #<----start of steps encapsulation within 'test' job
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: NPM Install
+        run: npm install
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm test
+
+        #<----end of steps encapsulation within 'test' jobs
+        #<----end of 'test' job encapsulation
+
+     #<----ends the job encapsulation
+    
+          
+
+
+
+
+
+
+        
+        
