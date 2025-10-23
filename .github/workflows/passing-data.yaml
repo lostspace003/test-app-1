@@ -1,0 +1,34 @@
+name: Passing Data Workflow
+
+on: [push]
+
+jobs:
+  data_generation_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate Data
+      run: echo "Some Random Data is Generated" > data.txt
+    - name: Upload data generated as an artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: data-artifact
+        path: data.txt
+
+  data_download_job:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Download Data Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: data-artifact
+        path: data/
+    - name: Use Data in data_download_job
+      run: cat data/data.txt
+      
+
+
+
+
+
+  
+  
