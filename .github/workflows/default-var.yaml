@@ -1,0 +1,15 @@
+name: Default Variables Example
+on:
+  push:
+    branches:
+      - main
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display Default Variables
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Action: $GITHUB_ACTOR"
+          echo "SHA: $GITHUB_SHA"
+          echo "Event Name: $GITHUB_EVENT_NAME"
