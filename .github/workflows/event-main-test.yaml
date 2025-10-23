@@ -1,0 +1,16 @@
+name: Push Events due to main and test branch only
+
+on: 
+  push:
+    branches:
+      - main
+      - test
+jobs:
+  show-info:
+    runs-on: ubuntu-latest
+    steps:
+    - name: info
+      run: |
+        echo "this is a push event on a particular branch only
+    
+      
