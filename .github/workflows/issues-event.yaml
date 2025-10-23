@@ -1,0 +1,14 @@
+name: Issues Found
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  issues-found:
+    runs-on: ubuntu-latest
+    steps:
+    - name: issue found wich needs to be resolved at earliest
+      run: |
+        echo "Jalal resolve it quickly"
